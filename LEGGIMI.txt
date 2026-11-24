@@ -1,0 +1,29 @@
+RITMO 4.0 — Personal Food Intelligence
+=====================================
+Versione di sviluppo. Non pubblicata online. Non è un dispositivo medico.
+
+INSTALLAZIONE (iPhone)
+1. Estrai lo ZIP. Pubblica SOLO index.html, manifest.webmanifest, sw.js, icon-192.png e icon-512.png su un hosting statico HTTPS. GitHub Pages è un'opzione gratuita con repository pubblico. Nessuna chiave API necessaria. Non pubblicare il profilo privato, il file HTML personale o backup.
+2. Apri l'indirizzo HTTPS in Safari. Dal menu Condividi, scegli Aggiungi alla schermata Home. Apri l'icona RITMO.
+3. Profilo > Ripristina backup JSON: importa il file Ritmo_v4_profilo_privato.json oppure un tuo backup Ritmo v3. L'importazione sostituisce i dati attuali; esporta prima ciò che vuoi conservare.
+4. Inserisci il contesto Casa o Trasferta, e usa Diario / Alimenti. Il totale nutrizionale comprende SOLO gli alimenti con quantità registrati nel catalogo, non i testi liberi. I valori generici sono stime illustrative, non dati verificati di marca.
+
+ASSISTENTE
+- Motore a regole: funziona subito, senza API o quote; risposte limitate a parole chiave, BMI e riepiloghi. Non è un LLM.
+- Modello AI locale: Assistente > Attiva / scarica modello locale. WebLLM via CDN, WebGPU necessario. Primo download potenzialmente grande; usa Wi-Fi. Se compatibile, genera risposte direttamente sul dispositivo, senza API a consumo. Non garantito su iPhone. Il modello potrebbe essere troppo pesante o le risposte imprecise. Nessun addestramento proprietario.
+- Menu: seleziona foto > Leggi foto del menu (OCR). Tesseract.js scarica libreria e dati linguistici. Controlla il testo prima di inviarlo. Non riconosce visivamente un piatto fotografato. Il motore utilizza il testo, non la foto come input multimodale.
+- Ricerca: inserisci termini generici in Europe PMC. Mostra risultati e link bibliografici, non analizza automaticamente il testo integrale. Non inserire dati sanitari personali nei termini. Open Food Facts accetta codici EAN inseriti a mano; dati collaborativi, controllare l'etichetta.
+- Nessuna notifica. Nessuna sincronizzazione cloud. I dati non sono cifrati in IndexedDB. Backup cifrato opzionale con password (AES-GCM/PBKDF2). Conserva la password, non recuperabile. Backup JSON e CSV in chiaro: conservare privatamente.
+
+COLLAUDO
+Verificata sintassi JavaScript. Verificato in Chromium con HTML caricato direttamente: importazione profilo, catalogo, registrazione riso 80 g, totale parziale, risposta a regole, navigazione. Il browser di test ha bloccato localhost: non verificati installazione, service worker, persistenza IndexedDB tra chiusure, modello WebGPU, OCR e ricerche live. Le funzioni che dipendono da download/rete possono fallire. La versione HTML personale è una anteprima e potrebbe non salvare i dati se aperta da File/Quick Look su iPhone.
+
+FONTI E TECNOLOGIE
+https://github.com/mlc-ai/web-llm
+https://github.com/naptha/tesseract.js
+https://europepmc.org/RestfulWebService
+https://world.openfoodfacts.org/data
+I disegni SVG sono inclusi nel codice, non dipendono da servizi di immagini.
+
+LIMITI
+Non ancora implementati: riconoscimento visivo del piatto, analisi automatica delle fonti, scanner barcode da fotocamera, ricettario avanzato, micronutrienti completi, correlazioni statistiche, sincronizzazione cloud, ricalcolo dinamico completo del piano. Il menu di casa contiene combinazioni orientative, non un piano clinico calibrato. Per i sintomi gastrointestinali intensi e persistenti è raccomandata una valutazione gastroenterologica. Non eliminare il glutine prima degli accertamenti per celiachia.
